@@ -63,9 +63,8 @@ public class reverse_nodes_in_k_group {
         return "Pass";
     }
         public static void main(String[] args) {
-
-//        Input: head = [1,2,3,4,5], k = 2
-//        Output: [2,1,4,3,5]
+//          Input: head = [1,2,3,4,5], k = 2
+//          Output: [2,1,4,3,5]
             ListNode l1 = new ListNode(1);
             l1.next = new ListNode(2);
             l1.next.next = new ListNode(3);
@@ -79,14 +78,19 @@ public class reverse_nodes_in_k_group {
             int k1 = 2;
             System.out.println(test(reverseKGroup(l1, k1), out1));
 
-//        Input: head = [1,2,3,4,5], k = 3
-//        Output: [3,2,1,4,5]
+//          Input: head = [1,2,3,4,5], k = 3
+//          Output: [3,2,1,4,5]
+            ListNode l2 = new ListNode(1);
+            l2.next = new ListNode(2);
+            l2.next.next = new ListNode(3);
+            l2.next.next.next = new ListNode(4);
+            l2.next.next.next.next = new ListNode(5);
             ListNode out2 = new ListNode(3);
             out2.next = new ListNode(2);
             out2.next.next = new ListNode(1);
             out2.next.next.next = new ListNode(4);
             out2.next.next.next.next = new ListNode(5);
             int k2 = 3;
-            System.out.println(test(reverseKGroup(l1, k2), out2));
+            System.out.println(test(reverseKGroup(l2, k2), out2));
     }
 }
