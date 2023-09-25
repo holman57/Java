@@ -15,16 +15,26 @@ public class reverse_nodes_in_k_group {
 
 //    You may not alter the values in the list's nodes, only nodes themselves may be changed.
     public static ListNode reverseLinkedList(ListNode head, int k) {
-        ListNode out_head = null;
-        ListNode tail = head;
+        ListNode sub_head = null;
+
+        System.out.println();
+        System.out.print("head: ");
+        printList(head);
         while (k > 0) {
-            ListNode node = tail.next;
-            tail.next = out_head;
-            out_head = tail;
-            tail = node;
+            ListNode node = head.next;
+            head.next = sub_head;
+            sub_head = head;
+            head = node;
             k--;
+
+            System.out.println();
+            System.out.print("sub_head: ");
+            printList(sub_head);
+            System.out.println();
+            System.out.print("head: ");
+            printList(head);
         }
-        return out_head;
+        return sub_head;
     }
 
     public static ListNode reverseKGroup(ListNode head, int k) {
@@ -61,6 +71,14 @@ public class reverse_nodes_in_k_group {
             }
         }
         return "Pass";
+    }
+
+    public static void printList(ListNode head) {
+        ListNode ptr = new ListNode(head.val, head.next);
+        while (ptr != null) {
+            System.out.print(ptr.val + " ");
+            ptr = ptr.next;
+        }
     }
         public static void main(String[] args) {
 //          Input: head = [1,2,3,4,5], k = 2
