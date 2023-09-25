@@ -6,9 +6,48 @@ public class reverse_nodes_in_k_group {
         ListNode(int val) { this.val = val; }
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
-    public static ListNode reverseKGroup(ListNode head, int k) {
+//    Given the head of a linked list, reverse the nodes of the list k at a time,
+//    and return the modified list.
 
-        return new ListNode(0);
+//    k is a positive integer and is less than or equal to the length of the linked list.
+//    If the number of nodes is not a multiple of k then left-out nodes, in the end,
+//    should remain as it is.
+
+//    You may not alter the values in the list's nodes, only nodes themselves may be changed.
+    public static ListNode reverseLinkedList(ListNode head, int k) {
+        ListNode out_head = null;
+        ListNode tail = head;
+        while (k > 0) {
+            ListNode node = tail.next;
+            tail.next = out_head;
+            out_head = tail;
+            tail = node;
+            k--;
+        }
+        return out_head;
+    }
+
+    public static ListNode reverseKGroup(ListNode head, int k) {
+        ListNode ptr = head;
+        ListNode tail = null;
+        ListNode out_head = null;
+        while (ptr != null) {
+            int n = 0;
+            ptr = head;
+            while (n < k && ptr != null) {
+                ptr = ptr.next;
+                n += 1;
+            }
+            if (n == k) {
+                ListNode reverse_head = reverseLinkedList(head, k);
+                if (out_head == null) out_head = reverse_head;
+                if (tail != null) tail.next = reverse_head;
+                tail = head;
+                head = ptr;
+            }
+        }
+        if (tail != null) tail.next = head;
+        return out_head == null ? head : out_head;
     }
 
     public static String test(ListNode in, ListNode out) {
